@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Layout, Menu, Button } from "antd";
 import {
   HomeOutlined,
@@ -17,10 +17,44 @@ const { Header, Sider, Content } = Layout;
 
 export const DashboardLayout: React.FC = () => {
   const [collapsed, setCollapsed] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     console.log("Signing out...");
   };
+
+  const menuItems = [
+    {
+      key: "1",
+      icon: <HomeOutlined />,
+      label: "Dashboard Overview",
+      onClick: () => navigate("/admin/home"),
+    },
+    {
+      key: "2",
+      icon: <BellOutlined />,
+      label: "Announcements",
+      onClick: () => navigate("/admin/announcements"),
+    },
+    {
+      key: "3",
+      icon: <CalendarOutlined />,
+      label: "Events",
+      onClick: () => navigate("/admin/events"),
+    },
+    {
+      key: "4",
+      icon: <MessageOutlined />,
+      label: "Forums",
+      onClick: () => navigate("/admin/forums"),
+    },
+    {
+      key: "5",
+      icon: <ToolOutlined />,
+      label: "Digital Toolkits",
+      onClick: () => navigate("/admin/toolkits"),
+    },
+  ];
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -52,33 +86,7 @@ export const DashboardLayout: React.FC = () => {
           defaultSelectedKeys={["1"]}
           className="admin-sidebar border-none"
           style={{ background: "transparent" }}
-          items={[
-            {
-              key: "1",
-              icon: <HomeOutlined />,
-              label: "Dashboard Overview",
-            },
-            {
-              key: "2",
-              icon: <BellOutlined />,
-              label: "Announcements",
-            },
-            {
-              key: "3",
-              icon: <CalendarOutlined />,
-              label: "Events",
-            },
-            {
-              key: "4",
-              icon: <MessageOutlined />,
-              label: "Forums",
-            },
-            {
-              key: "5",
-              icon: <ToolOutlined />,
-              label: "Digital Toolkits",
-            },
-          ]}
+          items={menuItems}
         />
       </Sider>
       <Layout

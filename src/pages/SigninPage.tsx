@@ -1,7 +1,9 @@
 import React from "react";
 import BRAND_LOGO from "@/assets/brand-logo.png";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { $baseApi } from "@/api";
+import { useNavigate } from "react-router-dom";
 
 type SigninFormData = {
   email: string;
@@ -10,9 +12,25 @@ type SigninFormData = {
 
 export const SigninPage: React.FC = () => {
   const [form] = Form.useForm<SigninFormData>();
+  const navigate = useNavigate();
 
-  const handleSubmit = (values: SigninFormData) => {
-    console.log("Form values:", values);
+  const handleSubmit = async (values: SigninFormData) => {
+    try {
+      const response = await $baseApi.post("/auth/admin-signin", values);
+      const { authToken } = response.data;
+      localStorage.setItem("auth_token", authToken);
+      message.success("Successfully signed in!");
+      navigate("/admin/home");
+    } catch (error) {
+      console.log(error);
+      message.error("Invalid credentials. Please try again.");
+      form.setFields([
+        {
+          name: "password",
+          errors: [""],
+        },
+      ]);
+    }
   };
 
   return (
