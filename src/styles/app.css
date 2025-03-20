@@ -1,2 +1,11 @@
 @import "tailwindcss";
-@import "@radix-ui/themes/styles.css";
+
+.auth-layout {
+  background: rgb(31, 79, 45);
+  background: linear-gradient(
+    185deg,
+    rgba(31, 79, 45, 1) 0%,
+    rgba(44, 125, 68, 1) 56%,
+    rgba(72, 232, 119, 1) 100%
+  );
+}
