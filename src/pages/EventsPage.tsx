@@ -187,6 +187,7 @@ export const EventsPage: React.FC = () => {
 
   return (
     <div>
+      <h1 className="text-2xl mb-8">Manage Events</h1>
       <div className="mb-4">
         <Button type="primary" icon={<PlusOutlined />} onClick={handleCreate}>
           New Event
