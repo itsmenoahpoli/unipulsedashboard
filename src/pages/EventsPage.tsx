@@ -137,7 +137,7 @@ export const EventsPage: React.FC = () => {
       render: (image: string) =>
         image ? (
           <Image
-            src={`${import.meta.env.VITE_APP_URL}/public${image}`}
+            src={`${image}`}
             alt="Event"
             width={100}
             height={100}
